@@ -2,6 +2,6 @@
 layout: home
 ---
 
-# Welcome to My Swim Team
+# Welcome to Dragon Swim Team
 
-This site is powered by Jekyll and GitHub Pages.
+Swim Team Registration
