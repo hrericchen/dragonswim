@@ -4,27 +4,38 @@ layout: home
 
 # Welcome to Dragon Swim Team
 
-Swim Team Registration
+</body>
+</html>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Swim Team Registration</title>
+  <meta charset="UTF-8">
+  <title>Dragon Swim Team Signup</title>
+  <style>
+    body { font-family: Arial; padding: 40px; max-width: 500px; margin: auto; }
+    input, button { display: block; width: 100%; padding: 10px; margin: 10px 0; font-size: 16px; }
+    button { cursor: pointer; background: #1E90FF; color: white; border: none; border-radius: 5px; }
+  </style>
 </head>
 <body>
 
-<h2>Signup Form</h2>
+<h2>Dragon Swim Team Signup</h2>
 
 <form id="signupForm">
   <input type="email" id="email" placeholder="Email" required>
-  <input type="text" id="name" placeholder="Name">
+  <input type="text" id="name" placeholder="Full Name" required>
   <button type="submit">Submit</button>
 </form>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+<p id="message"></p>
 
-  const firebaseConfig = {
+<!-- Firebase Scripts -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+// ===== Replace this with YOUR Firebase config =====
+ const firebaseConfig = {
     apiKey: "AIzaSyCCvxJPxLgmMvMW0DJpy44C5p2ACbLqf1E",
     authDomain: "dragon-swim.firebaseapp.com",
     projectId: "dragon-swim",
@@ -33,20 +44,43 @@ Swim Team Registration
     appId: "1:353938946053:web:1fbdf6b4a508392e6b046c"
   };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  document.getElementById("signupForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
+// Form submission
+const form = document.getElementById("signupForm");
+const message = document.getElementById("message");
 
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const emailValue = document.getElementById("email").value;
+  const nameValue = document.getElementById("name").value;
+
+  // Debug
+  console.log("Email:", emailValue);
+  console.log("Name:", nameValue);
+
+  if (!emailValue || !nameValue) {
+    message.textContent = "Please fill in all fields!";
+    return;
+  }
+
+  try {
     await addDoc(collection(db, "users"), {
-      email: email.value,
-      name: name.value,
+      email: emailValue,
+      name: nameValue,
       createdAt: new Date()
     });
 
-    alert("Submitted!");
-  });
+    message.textContent = "Thanks! Your signup has been recorded.";
+    form.reset();
+
+  } catch (err) {
+    console.error(err);
+    message.textContent = "Error submitting data. Check console.";
+  }
+});
 </script>
 
 </body>
