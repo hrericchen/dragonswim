@@ -1,186 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Dragon Swim Team</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom, #f0f8ff, #d0e7ff);
-  }
+  <meta charset="UTF-8">
+  <title>Dragon Swim Team</title>
 
-  header {
-    background: #1E90FF;
-    color: white;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  <style>
+    /* ===== Global ===== */
+    * {
+      box-sizing: border-box;
+    }
 
-  header h1 {
-    margin: 0;
-    font-size: 28px;
-  }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f8fc;
+      color: #222;
+      opacity: 0;
+    }
 
-  header button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background: white;
-    color: #1E90FF;
-    font-weight: bold;
-  }
+    /* ===== Navbar ===== */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 18px 40px;
+      background: #1E90FF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      z-index: 1000;
+      transition: box-shadow 0.3s ease;
+    }
 
-  main {
-    text-align: center;
-    padding: 60px 20px;
-    max-width: 800px;
-    margin: auto;
-  }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
 
-  main h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-  }
+    #loginBtn {
+      background: white;
+      color: #1E90FF;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
 
-  main p {
-    font-size: 18px;
-    color: #333;
-    line-height: 1.6;
-  }
+    /* ===== Hero ===== */
+    .hero {
+      height: 90vh;
+      background: linear-gradient(to right, #1E90FF, #4facfe);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px;
+    }
 
-  #loginArea {
-    display: none;
-    background: #fff;
-    padding: 30px 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px #aaa;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
 
-  input {
-    display: block;
-    width: 90%;
-    padding: 10px;
-    margin: 10px auto;
-    font-size: 16px;
-  }
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      line-height: 1.5;
+    }
 
-  #loginArea button {
-    width: 45%;
-    margin: 10px 2.5%;
-    background: #1E90FF;
-    color: white;
-    font-weight: bold;
-  }
+    /* ===== Content ===== */
+    main {
+      padding: 80px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
 
-  #message {
-    margin-top: 10px;
-    color: red;
-  }
-</style>
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      margin-bottom: 40px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #1E90FF;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <h1>Dragon Swim Team</h1>
-  <button id="showLoginBtn">Login</button>
-</header>
+  <!-- ===== Navbar ===== -->
+  <header id="navbar">
+    <h1>Dragon Swim Team</h1>
+    <button id="loginBtn">Coach Login</button>
+  </header>
 
-<main>
-  <h2>Welcome to Dragon Swim Team</h2>
-  <p>
-    This is the portal for our swim team members and coaches.  
-    Coaches can log in to view and manage swimmer signups.  
-    Families can use the signup form to register their swimmers.  
-  </p>
+  <!-- ===== Hero Section ===== -->
+  <section class="hero">
+    <h2 id="heroTitle">Welcome to Dragon Swim</h2>
+    <p>
+      A competitive and supportive swim team focused on excellence,
+      teamwork, and personal growth.
+    </p>
+  </section>
 
-  <div id="loginArea">
-    <h3>Coach Login / Register</h3>
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <button id="loginBtn">Login</button>
-    <button id="registerBtn">Register</button>
-    <p id="message"></p>
-  </div>
-</main>
+  <!-- ===== Main Content ===== -->
+  <main>
+    <div class="card">
+      <h3>About Our Team</h3>
+      <p>
+        <!-- ✏️ WRITE ABOUT YOUR TEAM HERE -->
+        Dragon Swim Team is dedicated to developing strong swimmers
+        through disciplined training, encouragement, and community.
+        Our athletes compete at multiple levels while building lifelong
+        skills and friendships.
+      </p>
+    </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    <div class="card">
+      <h3>Practice & Values</h3>
+      <p>
+        <!-- ✏️ WRITE MORE HERE -->
+        We emphasize technique, consistency, and respect. Coaches
+        focus on individual improvement while fostering a team-first
+        mindset.
+      </p>
+    </div>
+  </main>
 
-// ===== Replace with your Firebase config =====
- const firebaseConfig = {
-    apiKey: "AIzaSyCCvxJPxLgmMvMW0DJpy44C5p2ACbLqf1E",
-    authDomain: "dragon-swim.firebaseapp.com",
-    projectId: "dragon-swim",
-    storageBucket: "dragon-swim.firebasestorage.app",
-    messagingSenderId: "353938946053",
-    appId: "1:353938946053:web:1fbdf6b4a508392e6b046c"
-  };
+  <footer>
+    © 2026 Dragon Swim Team
+  </footer>
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+  <!-- ===== JavaScript ===== -->
+  <script>
+    // Page fade-in
+    window.addEventListener("load", () => {
+      document.body.style.transition = "opacity 0.8s ease";
+      document.body.style.opacity = 1;
+    });
 
-const showLoginBtn = document.getElementById("showLoginBtn");
-const loginArea = document.getElementById("loginArea");
-showLoginBtn.addEventListener("click", () => {
-  loginArea.style.display = loginArea.style.display === "none" ? "block" : "none";
-});
+    // Navbar shadow on scroll
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+      navbar.style.boxShadow =
+        window.scrollY > 10 ? "0 4px 15px rgba(0,0,0,0.2)" : "none";
+    });
 
-const loginBtn = document.getElementById("loginBtn");
-const registerBtn = document.getElementById("registerBtn");
-const message = document.getElementById("message");
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
+    // Login button animation
+    const loginBtn = document.getElementById("loginBtn");
 
-// Login
-loginBtn.addEventListener("click", async () => {
-  const email = emailInput.value;
-  const password = passwordInput.value;
-  message.textContent = "";
+    loginBtn.addEventListener("mouseenter", () => {
+      loginBtn.style.transform = "scale(1.05)";
+    });
 
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-    window.location.href = "dashboard.html"; // Redirect to dashboard
-  } catch (err) {
-    console.error(err);
-    message.textContent = "Login failed: " + err.message;
-  }
-});
+    loginBtn.addEventListener("mouseleave", () => {
+      loginBtn.style.transform = "scale(1)";
+    });
 
-// Register
-registerBtn.addEventListener("click", async () => {
-  const email = emailInput.value;
-  const password = passwordInput.value;
-  message.textContent = "";
+    loginBtn.addEventListener("click", () => {
+      // CHANGE THIS when your login page exists
+      window.location.href = "login.html";
+    });
+  </script>
 
-  try {
-    await createUserWithEmailAndPassword(auth, email, password);
-    message.style.color = "green";
-    message.textContent = "Successful Registration! You can now login.";
-    emailInput.value = "";
-    passwordInput.value = "";
-  } catch (err) {
-    console.error(err);
-    message.style.color = "red";
-    message.textContent = "Registration failed: " + err.message;
-  }
-});
-
-// Auto redirect if already logged in
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    window.location.href = "dashboard.html";
-  }
-});
-</script>
-
+</body>
+</html>
