@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coach Login</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #e5e5e5;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      width: 360px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1E90FF;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 6px;
+      background: #1E90FF;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: #f0f0f0;
+      color: #333;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .link {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #1E90FF;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== LOGIN ===== -->
+  <div class="container" id="loginBox">
+    <h2>Coach Login</h2>
+
+    <input type="email" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginPassword" placeholder="Password">
+
+    <button id="signInBtn">Sign In</button>
+
+    <button class="secondary" id="showRegisterBtn">Register</button>
+
+    <div class="link" id="backHome1">← Back to Home</div>
+  </div>
+
+  <!-- ===== REGISTER ===== -->
+  <div class="container hidden" id="registerBox">
+    <h2>Coach Register</h2>
+
+    <input type="email" id="registerEmail" placeholder="Email">
+    <input type="password" id="registerPassword" placeholder="Password">
+
+    <button id="registerBtn">Create Account</button>
+
+    <div class="link" id="backToLogin">← Back to Login</div>
+    <div class="link" id="backHome2">← Back to Home</div>
+  </div>
+
+  <!-- ===== JavaScript ===== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  // 🔴 REPLACE WITH YOUR OWN FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyCCvxJPxLgmMvMW0DJpy44C5p2ACbLqf1E",
+  authDomain: "dragon-swim.firebaseapp.com",
+  projectId: "dragon-swim",
+  storageBucket: "dragon-swim.firebasestorage.app",
+  messagingSenderId: "353938946053",
+  appId: "1:353938946053:web:1fbdf6b4a508392e6b046c",
+};
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const loginBox = document.getElementById("loginBox");
+  const registerBox = document.getElementById("registerBox");
+
+  // UI switching
+  document.getElementById("showRegisterBtn").onclick = () => {
+    loginBox.classList.add("hidden");
+    registerBox.classList.remove("hidden");
+  };
+
+  document.getElementById("backToLogin").onclick = () => {
+    registerBox.classList.add("hidden");
+    loginBox.classList.remove("hidden");
+  };
+
+  document.getElementById("backHome1").onclick =
+  document.getElementById("backHome2").onclick = () => {
+    window.location.href = "index.html";
+  };
+
+  // ===== LOGIN =====
+  document.getElementById("signInBtn").onclick = async () => {
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      window.location.href = "dashboard.html";
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  // ===== REGISTER =====
+  document.getElementById("registerBtn").onclick = async () => {
+    const email = document.getElementById("registerEmail").value;
+    const password = document.getElementById("registerPassword").value;
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      alert("Account created! You can now log in.");
+      registerBox.classList.add("hidden");
+      loginBox.classList.remove("hidden");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+</script>
+
+
+</body>
+</html>
