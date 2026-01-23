@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -20,18 +19,18 @@
 
     /* ===== Navbar ===== */
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 18px 40px;
-      background: #1E90FF;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-      z-index: 1000;
-      transition: box-shadow 0.3s ease;
-    }
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 40px;
+  background: #1E90FF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  z-index: 1000;
+}
+
 
     header h1 {
       margin: 0;
@@ -40,16 +39,19 @@
     }
 
     #loginBtn {
-      background: white;
-      color: #1E90FF;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: white !important;
+  color: #1E90FF !important;
+  border: none !important;
+  padding: 10px 18px !important;
+  border-radius: 8px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+}
 
+    
     /* ===== Hero ===== */
     .hero {
       height: 90vh;
@@ -105,10 +107,12 @@
 <body>
 
   <!-- ===== Navbar ===== -->
-  <header id="navbar">
-    <h1>Dragon Swim Team</h1>
-    <button id="loginBtn">Coach Login</button>
-  </header>
+  <header class="topbar">
+  <div class="title">Dragon Swim Team</div>
+  <button id="loginBtn">Coach Login</button>
+</header>
+
+
 
   <!-- ===== Hero Section ===== -->
   <section class="hero">
