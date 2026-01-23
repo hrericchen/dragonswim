@@ -85,3 +85,26 @@ form.addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Coach Admin Page</title>
+  <style>
+    body { font-family: Arial; padding: 40px; max-width: 700px; margin: auto; }
+    input, button { display: block; width: 100%; padding: 10px; margin: 10px 0; font-size: 16px; }
+    button { cursor: pointer; background: #1E90FF; color: white; border: none; border-radius: 5px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+  </style>
+</head>
+<body>
+
+<h2>Coach Login</h2>
+
+<div id="loginDiv">
+  <input type="email" id="loginEmail" placeholder="Email">
+  <input type="password" id="loginPassword" placeholder="Password">
+  <button id="loginBtn">Login</button>
+  <p
