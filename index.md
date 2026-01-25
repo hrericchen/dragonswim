@@ -167,21 +167,7 @@
     });
 
     // Login button animation
-    const loginBtn = document.getElementById("loginBtn");
-
-    loginBtn.addEventListener("mouseenter", () => {
-      loginBtn.style.transform = "scale(1.05)";
-    });
-
-    loginBtn.addEventListener("mouseleave", () => {
-      loginBtn.style.transform = "scale(1)";
-    });
-
-    loginBtn.addEventListener("click", () => {
-      // CHANGE THIS when your login page exists
-      window.location.href = "login.html";
-    });
-  </script>
+  
 
 </body>
 </html>
